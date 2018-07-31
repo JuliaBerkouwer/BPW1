@@ -7,6 +7,6 @@ public class WinBox : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
-            other.GetComponent<Timer>().Finnish();
+            other.GetComponent<GameManager>().Finnish();
     }
 }

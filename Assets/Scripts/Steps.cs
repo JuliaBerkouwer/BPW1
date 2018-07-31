@@ -7,11 +7,11 @@ public class Steps : MonoBehaviour {
     private Vector3 lastLocation;
     private CharacterController cc;
 
-    private Timer t;
+    private GameManager gm;
 
     private void Start()
     {
-        t = GetComponent<Timer>();
+        gm = GetComponent<GameManager>();
         cc = GetComponent<CharacterController>();
     }
 
@@ -19,14 +19,11 @@ public class Steps : MonoBehaviour {
     {
         if (lastLocation.x != transform.position.x && lastLocation.z != transform.position.z && cc.isGrounded)
         {
-            t.enabled = true;
+            gm.startTimer = true;
             ps.Play();
         }
 
-        if (lastLocation.y < -25f)
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
-        lastLocation = transform.position;
+         lastLocation = transform.position;
 
 
 	}
