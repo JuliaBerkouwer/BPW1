@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/MainMenu_Live.unity
+    guid: 8784a0c5c844e7d438fab25495c23150
+  - enabled: 1
     path: Assets/BPW1_JuliaBerkouwer.unity
     guid: 2137f3d7372773347979933b727dd9dc
   m_configObjects: {}

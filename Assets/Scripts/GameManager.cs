@@ -26,6 +26,9 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
             ResetScore();
+
+          if (Input.GetKeyDown(KeyCode.Escape))
+            Quit();
     }
 
     void CheckVoid(float ypoint, float depth)
@@ -53,7 +56,7 @@ public class GameManager : MonoBehaviour
     public void Finnish()
     {
         finnished = true;
-        timerText.color = Color.blue;
+        timerText.color = Color.cyan;
 
         float[] scores = new float[3];
         int yourScore = -1;
@@ -88,7 +91,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetFloat("Score" + j, scores[j]);
             scoreBoard[j].GetComponent<Text>().text = TimeConvert(scores[j]);
             if(yourScore != -1) 
-                scoreBoard[yourScore].GetComponent<Text>().color = Color.blue;
+                scoreBoard[yourScore].GetComponent<Text>().color = Color.cyan;
 
         }
         board.SetActive(true);
@@ -100,5 +103,14 @@ public class GameManager : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Score" + k, 0f);
         }
+    }
+
+    public void Quit()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit ();
+#endif
     }
 }
