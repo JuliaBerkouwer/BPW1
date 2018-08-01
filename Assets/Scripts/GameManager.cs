@@ -13,47 +13,41 @@ public class GameManager : MonoBehaviour
     public GameObject board;
     private float startTime;
     private bool finnished = false;
-    private int time;
-   
-
-    // Use this for initialization
-    void Start ()
-    {
-        startTime = Time.time;
-    }
+    private float time;
 
     void Update()
     {
-        if (startTimer)
-            time = Timer(finnished);
+        if (startTimer && !finnished)
+            time = Timer();
+        else
+            startTime = Time.time;
 
-      
-        CheckVoid(transform.position.y,-25f); 
+        CheckVoid(transform.position.y,-25f);
+
+        if (Input.GetKeyDown(KeyCode.R))
+            ResetScore();
     }
 
-    // Update is called once per frame
     void CheckVoid(float ypoint, float depth)
     {
         if (ypoint < depth)
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    int Timer(bool done)
+    float Timer()
     {
         float t = 0;
-        int tOut = 0;
+        t = Time.time - startTime;
+        timerText.text = TimeConvert(t);
+        return t;
+    }
 
-        if (!done)
-        {
-            t = Time.time - startTime;
-            tOut = Mathf.RoundToInt(t);
-            string minutes = ((int)t / 60).ToString();
-            string seconds = (t % 60).ToString("f2");
+    string TimeConvert(float t)
+    {
+        string minutes = ((int)t / 60).ToString();
+        string seconds = (t % 60).ToString("f2");
 
-            timerText.text = minutes + ":" + seconds;
-        }
-
-        return tOut;
+        return  minutes + ":" + seconds;        
     }
 
     public void Finnish()
@@ -61,34 +55,50 @@ public class GameManager : MonoBehaviour
         finnished = true;
         timerText.color = Color.blue;
 
-        int[] scores = new int[3];
-
-        int scoreToMove = 0;
+        float[] scores = new float[3];
+        int yourScore = -1;
+        float scoreToMove = 0;
         bool moveScores = false;
 
         for (int i = 0; i < 3; i++)
         {
-            if (PlayerPrefs.GetInt("Score" + i) != 0)
-                scores[i] = PlayerPrefs.GetInt("Score" + i);    
+            if (PlayerPrefs.GetFloat("Score" + i) != 0)
+                scores[i] = PlayerPrefs.GetFloat("Score" + i);    
         }
 
         for (int j = 0; j < 3; j++)
         {
-            if(scores[j] > time && !moveScores)
+            if(scores[j] > time && !moveScores || scores[j] == 0f && !moveScores)
             {
                 scoreToMove = scores[j];
                 scores[j] = time;
+                moveScores = true;
+                yourScore = j;
             }
-            else
+            else if(moveScores)
             {
-                int t = scores[j];
+                float t = scores[j];
                 scores[j] = scoreToMove;
                 scoreToMove = t;
             }
-        }
-        PlayerPrefs.SetString("Score" + 0, timerText.text);
-        scoreBoard[0].GetComponent<Text>().text = PlayerPrefs.GetString("HighScore");
+            else
+            {
+                //do nothing
+            }
+            PlayerPrefs.SetFloat("Score" + j, scores[j]);
+            scoreBoard[j].GetComponent<Text>().text = TimeConvert(scores[j]);
+            if(yourScore != -1) 
+                scoreBoard[yourScore].GetComponent<Text>().color = Color.blue;
 
+        }
         board.SetActive(true);
-    }    
+    }   
+    
+    void ResetScore()
+    {
+        for(int k = 0; k < 3; k ++)
+        {
+            PlayerPrefs.SetFloat("Score" + k, 0f);
+        }
+    }
 }

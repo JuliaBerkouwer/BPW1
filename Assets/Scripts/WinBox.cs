@@ -7,6 +7,10 @@ public class WinBox : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
+        {
             other.GetComponent<GameManager>().Finnish();
+            GetComponent<SphereCollider>().enabled = false;
+        }
+
     }
 }
