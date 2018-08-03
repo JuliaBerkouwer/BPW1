@@ -1,19 +1,27 @@
 fileFormatVersion: 2
-guid: a9a560b7bc05a6a46978b53fe4b40f49
+guid: 218264eb578d29640abf8672cd43b82f
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
+    2100000: Brown.10
+    2100002: Yellow.3
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Environment_1
+    4300000: Terrain_1
+    6400000: //RootNode
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Orange.3
-    second: {fileID: 2100000, guid: 0933253977cd0454b989b8bc25bbdc83, type: 2}
+      name: Brown.10
+    second: {fileID: 2100000, guid: 8117e74ca190335479975c5dd8a73f62, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow.3
+    second: {fileID: 2100000, guid: 62c01cd363116e4418505d6d72764b0d, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -46,7 +54,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -58,7 +66,7 @@ ModelImporter:
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    indexFormat: 1
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
