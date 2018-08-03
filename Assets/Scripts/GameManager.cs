@@ -113,4 +113,12 @@ public class GameManager : MonoBehaviour
         Application.Quit ();
 #endif
     }
+
+    public bool CheckRabbits()
+    {
+        if (GameObject.FindGameObjectsWithTag("Bunny").Length <= 0)
+            return true;
+
+        return false;
+    }
 }

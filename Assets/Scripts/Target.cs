@@ -21,7 +21,7 @@ public class Target : MonoBehaviour
     void Die()
     {
         //IF the object has <=0 health then the object will get destroyed
-        gameObject.SetActive(false);
+        Destroy(gameObject);
       
     }
 }

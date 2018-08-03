@@ -8,8 +8,9 @@ public class Gun : MonoBehaviour
 
     public Camera fpsCam;                   //
     public GameObject impactEffectTerrain;    //Particle effect for when terrain is hit
+    public GameObject impactEffectBunny;    //Particle effect for when terrain is hit
     public ParticleSystem muzzleFlash;      //Particle effect for muzzleFlash
-   // public AudioClip shootingSound;         //Sound when shooting
+    public AudioClip shootingSound;         //Sound when shooting
 
 
 
@@ -34,8 +35,8 @@ public class Gun : MonoBehaviour
         muzzleFlash.Play();
 
         //Will put the sound of the shootingSound float in the Audiosource clip and will play it when you shoot.
-       // GetComponent<AudioSource>().clip = shootingSound;
-        //GetComponent<AudioSource>().Play();
+        GetComponent<AudioSource>().clip = shootingSound;
+        GetComponent<AudioSource>().Play();
 
 
         RaycastHit hit;
@@ -46,23 +47,29 @@ public class Gun : MonoBehaviour
             Debug.Log(hit.transform.name);
 
             //Takes the component target of the object it hit
-            //Target target = hit.transform.GetComponent<Target>();
+            Target target = hit.transform.GetComponent<Target>();
             //If a target is hit it takes damage
-            //if (target != null)
-            //{
-                //target.TakeDamage(damage);
-          //  }
+            if (target != null)
+            {
+                target.TakeDamage(damage);
+            }
 
             //If the target has the tag "Shark" then a particle effect will play
-           // if (target.tag == "Shark")
-         //   {
+            if (target.tag == "Bunny")
+            {
 
+                //We make a GameObject of the impactGO. It will Instantiate the particle effect of the shark when it hits the gameobject and it will make sure the particle effect will always show outside of the collider of the object
+                GameObject impactGO = Instantiate(impactEffectBunny, hit.point, Quaternion.LookRotation(hit.normal));
+                //The particle will be destroyed after 2 second
+                Destroy(impactGO, 2f);
+            }
+            else if (target.tag == "Terrain")
+            {
                 //We make a GameObject of the impactGO. It will Instantiate the particle effect of the shark when it hits the gameobject and it will make sure the particle effect will always show outside of the collider of the object
                 GameObject impactGO = Instantiate(impactEffectTerrain, hit.point, Quaternion.LookRotation(hit.normal));
                 //The particle will be destroyed after 2 second
                 Destroy(impactGO, 2f);
-         //   }
-
+            }
         }
 
     }
