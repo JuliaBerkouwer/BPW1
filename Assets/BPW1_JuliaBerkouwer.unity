@@ -6364,7 +6364,7 @@ GameObject:
   - component: {fileID: 839702825}
   m_Layer: 0
   m_Name: Police
-  m_TagString: Untagged
+  m_TagString: Police
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6386,6 +6386,7 @@ MonoBehaviour:
   startTimeBtwShots: 1
   player: {fileID: 693262197}
   projectile: {fileID: 1783537734938298, guid: 36f58edb136f0294cb854f7a05abfa32, type: 2}
+  shootPoint: {fileID: 1315010515}
   rotSpeed: 2
   stopPos: 15
   range: 30
@@ -6458,7 +6459,8 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.832784, z: -0, w: 0.5535981}
   m_LocalPosition: {x: -5.2520766, y: 3.110373, z: -3.3049502}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1315010515}
   m_Father: {fileID: 476537918}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 112.772, z: 0}
@@ -6786,7 +6788,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5884a95f9a13ac343930842dda8ca78d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.42
+      value: 1.37
       objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 5884a95f9a13ac343930842dda8ca78d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7235,6 +7237,34 @@ Transform:
   - {fileID: 1078454461}
   - {fileID: 1889011209}
   m_Father: {fileID: 1012057656}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1315010514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1315010515}
+  m_Layer: 0
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1315010515
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1315010514}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.959, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 839702830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1327768249 stripped

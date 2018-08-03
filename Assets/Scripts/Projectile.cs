@@ -8,10 +8,11 @@ public class Projectile : MonoBehaviour {
     public float speed;
     public GameObject impactEffectPlayer;
     public float bulletImpactTime;
-    public float peImpactTime;  
+    public float peImpactTime; 
 
     private Transform player;
     private Vector3 target;
+    private bool canMove = true;
 
 	// Use this for initialization
 	void Start ()
@@ -24,7 +25,8 @@ public class Projectile : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        if(canMove)
+            transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
 
         if (Vector3.Distance(transform.position, target)  <= 0)
             DestroyProjectile();
@@ -36,9 +38,10 @@ public class Projectile : MonoBehaviour {
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
-        else
+        else if (!other.CompareTag("Police"))
         {
             DestroyProjectile();
+            canMove = false;
         }
     }
 

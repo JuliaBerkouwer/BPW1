@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public float startTimeBtwShots = 20;
     public Transform player;
     public GameObject projectile;
+    public Transform shootPoint;
     public float rotSpeed;
     public float stopPos;
     public float range;
@@ -41,7 +42,7 @@ public class Enemy : MonoBehaviour
         {
             if (timeBtwShots <= 0)
             {
-                Instantiate(projectile, transform.position, Quaternion.LookRotation(relativePos));
+                Instantiate(projectile, shootPoint.position, Quaternion.LookRotation(relativePos));
                 timeBtwShots = startTimeBtwShots;
             }
             else
